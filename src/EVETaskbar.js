@@ -61,7 +61,9 @@ class EVETaskbar extends Component {
 					onChange={this.handleChange}
 					activeTabIndex={this.props.activeTabIndex}
 				>
-					<Tab onClick={() => this.props.wm.spawnWindow()}><TabIcon>home</TabIcon></Tab>
+					<Tab onClick={() => this.props.wm.spawnWindow()}>
+						<TabIcon>home</TabIcon>
+					</Tab>
 					{this.props.windows.map(this.renderTab)}
 					<Tab style={{ display: "none" }}></Tab>
 				</TabBar>

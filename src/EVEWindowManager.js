@@ -8,23 +8,25 @@ class EVEWindowManager extends Component {
 
 	constructor (props) {
 		super(props);
-		this.windex = 0;
-		this.zwindex = 10000;
-		this.state = {
-			windex: 0,
-			zwindex: 10000,
-			windows: [this.createWindow({ tabs: [this.createTab()] })],
-		};
+		this.state = this.loadState(
+			JSON.parse(localStorage.getItem("wm-state")) || { windows: [] },
+			true
+		);
 		this.prepareBinds();
 		window.wm = this;
+		window.addEventListener("beforeunload", this.onBeforeUnload);
+	}
+
+	onBeforeUnload () {
+		localStorage.setItem("wm-state", JSON.stringify(this.state))
 	}
 
 	componentDidMount () {
-		this.spawnWindow();
 	}
 
 	prepareBinds () {
 		this.createWindow = this.createWindow.bind(this);
+		this.onBeforeUnload = this.onBeforeUnload.bind(this);
 	}
 
 	getChildContext () {
@@ -38,7 +40,11 @@ class EVEWindowManager extends Component {
 	}
 
 	minimize (id, minimized = true) {
-		const windows = this.state.windows.map(win => win.id === id ? { ...win, minimized, zwindex: ++this.zwindex } : win);
+		const windows = this.state.windows.map(win => win.id === id ? { 
+			...win, 
+			minimized, 
+			zwindex: ++this.zwindex
+		} : win);
 		this.setState({ windows });
 	}
 
@@ -48,7 +54,11 @@ class EVEWindowManager extends Component {
 	}
 
 	focus (id) {
-		const windows = this.state.windows.map(win => ({ ...win, focused: win.id === id, zwindex: win.id === id ? ++this.zwindex : win.zwindex }));
+		const windows = this.state.windows.map(win => ({ 
+			...win, 
+			focused: win.id === id, 
+			zwindex: win.id === id ? ++this.zwindex : win.zwindex
+		}));
 		this.setState({ windows });
 	}
 
@@ -57,10 +67,13 @@ class EVEWindowManager extends Component {
 		this.setState({ windows });
 	}
 
-	loadState (state) {
-		this.windex = Math.max(...state.windows.map(win => win.id));
-		this.zwindex = Math.max(...state.windows.map(win => win.zwindex));
-		this.setState(state);
+	loadState (state, constructor = false) {
+		this.windex = state.windows.length ? Math.max(...state.windows.map(win => win.id)) : 0;
+		this.zwindex = state.windows.length ? Math.max(...state.windows.map(win => win.zwindex)) : 10000;
+		if (constructor === false)
+			this.setState(state);
+		else
+			return state;
 	}
 
 	createWindow (props = {}) {
@@ -84,13 +97,15 @@ class EVEWindowManager extends Component {
 
 	addWindow (props) {
 		const win = this.createWindow(props);
-		const windows = this.state.windows.map(win => ({ ...win, focused: false }));
+		const windows = this.state.windows.map(win => ({ 
+			...win, 
+			focused: false 
+		}));
 		this.setState({ windows: [...windows, win] });
 	}
 
 	activeTabIndex () {
-		const index = this.state.windows.findIndex(win => win.focused === true);
-		return index + 1;
+		return 1 + this.state.windows.findIndex(win => win.focused === true);
 	}
 
 	render () {
