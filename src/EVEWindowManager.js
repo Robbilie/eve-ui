@@ -51,6 +51,15 @@ class EVEWindowManager extends Component {
 		);
 	}
 
+	toggleFullscreen (id, maximized = true) {
+		this.updateWindowState(
+			id,
+			{
+				maximized
+			}
+		);
+	}
+
 	close (id) {
 		const windows = this.state.windows.filter(win => win.id !== id);
 		this.setState({ windows });
@@ -121,6 +130,7 @@ class EVEWindowManager extends Component {
 				/>
 				<EVEDesktop 
 					wm={this} 
+					mobile={this.props.mobile}
 					windows={this.state.windows}
 				/>
 			</div>

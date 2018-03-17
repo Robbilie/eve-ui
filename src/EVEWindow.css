@@ -131,6 +131,13 @@ header {
   margin-right: -20px;
 }
 
+.maximized {
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
 @media (max-width: 500px) {
 
   .window {

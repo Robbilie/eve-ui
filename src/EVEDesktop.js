@@ -14,7 +14,12 @@ class EVEDesktop extends Component {
 
 	renderWindow ({ id, ...rest }, i) {
 		return (
-			<EVEWindow wm={this.props.wm} key={id} id={id} {...rest} />
+			<EVEWindow 
+				wm={this.props.wm} 
+				key={id} 
+				id={id} 
+				mobile={this.props.mobile}
+				{...rest} />
 		);
 	}
 	
