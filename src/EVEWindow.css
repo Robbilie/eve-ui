@@ -130,3 +130,14 @@ header {
   margin-left: 6px;
   margin-right: -20px;
 }
+
+@media (max-width: 500px) {
+
+  .window {
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+}
