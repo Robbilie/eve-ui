@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
+import { Ripple } from 'rmwc/Ripple';
+import { ToolbarSection, ToolbarIcon } from 'rmwc/Toolbar';
 
 class EVEWindowButtons extends Component {
 	
 	render () {
 		return (
-			<div>
-				{this.props.title}
-			</div>
+			<ToolbarSection alignEnd shrinkToFit>
+				<Ripple unbounded>
+					<ToolbarIcon onClick={this.props.minimize} use="remove"/>
+				</Ripple>
+				<Ripple unbounded>
+					<ToolbarIcon onClick={this.props.toggleMax} use="fullscreen"/>
+				</Ripple>
+				<Ripple unbounded>
+					<ToolbarIcon onClick={this.props.close} use="close"/>
+				</Ripple>
+			</ToolbarSection>
 		);
 	}
 

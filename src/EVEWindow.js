@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { Elevation } from 'rmwc/Elevation';
 import { Card } from 'rmwc/Card';
-import { Toolbar, ToolbarRow, ToolbarSection, ToolbarIcon } from 'rmwc/Toolbar';
-import { Tab, TabBar, TabBarScroller } from 'rmwc/Tabs';
-import { Icon } from 'rmwc/Icon';
-import { Ripple } from 'rmwc/Ripple';
+import { Toolbar, ToolbarRow } from 'rmwc/Toolbar';
 import './EVEWindow.css';
 import EVETabManager from './EVETabManager';
 import EVEWindowScalers from './EVEWindowScalers';
+import EVEWindowTabs from './EVEWindowTabs';
+import EVEWindowButtons from './EVEWindowButtons';
 
 class EVEWindow extends Component {
 
@@ -36,12 +35,12 @@ class EVEWindow extends Component {
 		this.onMouseDown = this.onMouseDown.bind(this);
 		this.onMouseMove = this.onMouseMove.bind(this);
 		this.removeListeners = this.removeListeners.bind(this);
+		this.renderTab = this.renderTab.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+		this.focus = this.focus.bind(this);
 		this.minimize = this.minimize.bind(this);
 		this.toggleMax = this.toggleMax.bind(this);
 		this.close = this.close.bind(this);
-		this.focus = this.focus.bind(this);
-		this.renderTab = this.renderTab.bind(this);
-		this.handleChange = this.handleChange.bind(this);
 	}
 	
 	componentWillMount () {
@@ -227,31 +226,8 @@ class EVEWindow extends Component {
 						onMouseDown={this.onMouseDown}
 					>
 						<ToolbarRow>
-							<ToolbarSection alignStart>
-								<TabBarScroller 
-									indicatorBack={<Icon use="chevron_left"/>} 
-									indicatorForward={<Icon use="chevron_right"/>}
-								>
-									<TabBar
-										style={{ margin: 0 }}
-										activeTabIndex={this.state.activeTabIndex}
-										onChange={this.handleChange}
-									>
-										{this.props.tabs.map((tab, i) => <Tab key={i}>{tab.title}</Tab>)}
-									</TabBar>
-								</TabBarScroller>
-							</ToolbarSection>
-							<ToolbarSection alignEnd shrinkToFit>
-								<Ripple unbounded>
-									<ToolbarIcon onClick={this.minimize} use="remove"/>
-								</Ripple>
-								<Ripple unbounded>
-									<ToolbarIcon onClick={this.toggleMax} use="fullscreen"/>
-								</Ripple>
-								<Ripple unbounded>
-									<ToolbarIcon onClick={this.close} use="close"/>
-								</Ripple>
-							</ToolbarSection>
+							<EVEWindowTabs activeTabIndex={this.state.activeTabIndex} tabs={this.props.tabs} handleChange={this.handleChange} />
+							<EVEWindowButtons minimize={this.minimize} toggleMax={this.toggleMax} close={this.close} />
 						</ToolbarRow>
 					</Toolbar>
 					<div className={"window-content"}>
