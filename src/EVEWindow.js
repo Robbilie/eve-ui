@@ -49,7 +49,7 @@ class EVEWindow extends Component {
 		this.nativeStyle(this.getStyle(), false);
 	}
 
-	getStyle ({ top = 0, left = 0, width = 400, height = 400 } = this.props) {
+	getStyle ({ top = 50 + 50 * (this.props.zwindex % 10), left = 50 + 50 * (this.props.zwindex % 10), width = 400, height = 400 } = this.props) {
 		return { top, left, width, height };
 	}
 
