@@ -183,7 +183,9 @@ class EVEWindow extends Component {
 		}
 	}
 
-	focus () {
+	focus (e) {
+		if (e.target.classList.contains("close"))
+			return;
 		this.props.wm.focus(this.props.id);
 	}
 

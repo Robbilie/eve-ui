@@ -35,7 +35,7 @@ class EVETaskbar extends Component {
 			<Tab
 				key={id}
 				onClick={() => this.handleClick(id, minimized, focused)}
-				style={{ backgroundColor: minimized ? "red" : "transparent" }}
+				style={{ opacity: minimized ? 0.25 : 1 }}
 			>
 				{tabs.map(({ title }) => title).join(" / ")}
 			</Tab>

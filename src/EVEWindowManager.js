@@ -45,6 +45,7 @@ class EVEWindowManager extends Component {
 			id,
 			{
 				minimized,
+				focused: !minimized,
 				zwindex: ++this.zwindex,
 			}
 		);
@@ -107,12 +108,7 @@ class EVEWindowManager extends Component {
 	}
 
 	activeTabIndex () {
-		const index = this.state.windows.findIndex(win => win.focused === true);
-		if (index === -1) {
-			return this.state.windows.length - 1;
-		} else {
-			return index;
-		}
+		return this.state.windows.findIndex(win => win.focused === true);
 	}
 
 	render () {

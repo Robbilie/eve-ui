@@ -14,7 +14,7 @@ class EVEWindowButtons extends Component {
 					<ToolbarIcon onClick={this.props.toggleMax} use="fullscreen"/>
 				</Ripple>
 				<Ripple unbounded>
-					<ToolbarIcon onClick={this.props.close} use="close"/>
+					<ToolbarIcon onClick={this.props.close} use="close" className={"close"}/>
 				</Ripple>
 			</ToolbarSection>
 		);
