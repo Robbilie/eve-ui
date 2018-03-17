@@ -103,10 +103,10 @@ class EVEWindow extends Component {
 			style.top = offsetTop - y;
 		  
 		if (list.contains("scale-x"))
-			style.width = clientWidth - (invert && !topRight ? -x : x);
+			style.width = Math.max(350, clientWidth - (invert && !topRight ? -x : x));
 		  
 		if (list.contains("scale-y"))
-			style.height = clientHeight - (invert && !bottomLeft ? -y : y);
+			style.height = Math.max(100, clientHeight - (invert && !bottomLeft ? -y : y));
 
 		return style;
 	}
