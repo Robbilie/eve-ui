@@ -41,11 +41,13 @@ class EVETaskbar extends Component {
 				className={"taskbar-tab"}
 			>
 				{tabs.map(({ title }) => title).join(" / ")}
-				<Icon 
-					onClick={(e) => e.stopPropagation() || this.props.wm.close(id)} 
-					className={"window-tab-close"}
-					use="close"
-				/>
+				{this.props.mobile ? null :
+					<Icon 
+						onClick={(e) => e.stopPropagation() || this.props.wm.close(id)} 
+						className={"window-tab-close"}
+						use="close"
+					/>
+				}
 			</Tab>
 		);
 	}

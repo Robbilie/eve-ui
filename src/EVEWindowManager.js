@@ -132,6 +132,7 @@ class EVEWindowManager extends Component {
 						backgroundColor: this.isAnyMaximized() ? "var(--mdc-theme-primary)" : "transparent"
 					}}
 					wm={this} 
+					mobile={this.props.mobile}
 					windows={this.state.windows} 
 					activeTabIndex={this.activeTabIndex()}
 				/>

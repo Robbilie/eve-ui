@@ -229,6 +229,7 @@ class EVEWindow extends Component {
 					<Toolbar
 						className={"move-x move-y"}
 						onMouseDown={this.onMouseDown}
+						onTouchStart={this.onMouseDown}
 					>
 						<ToolbarRow>
 							<EVEWindowTabs 
