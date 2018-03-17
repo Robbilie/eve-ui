@@ -74,8 +74,8 @@ class EVEWindowManager extends Component {
 		this.setState({ windows });
 	}
 
-	updateWindowState (id, style) {
-		const windows = this.state.windows.map(win => win.id === id ? { ...win, ...style } : win);
+	updateWindowState (id, state) {
+		const windows = this.state.windows.map(win => win.id === id ? { ...win, ...state } : win);
 		this.setState({ windows });
 	}
 

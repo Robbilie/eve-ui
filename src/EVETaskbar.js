@@ -21,6 +21,8 @@ class EVETaskbar extends Component {
 	handleClick (id, minimized, focused) {
 		if (minimized) {
 			this.props.wm.minimize(id, !minimized);
+			if (minimized === true)
+				window.dispatchEvent(new Event("resize"));
 		} else {
 			if (focused) {
 				this.props.wm.minimize(id);

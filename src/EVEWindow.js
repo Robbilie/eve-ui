@@ -14,18 +14,12 @@ class EVEWindow extends Component {
 
 	constructor (props) {
 		super(props);
-		const { top = 0, left = 0, width = 400, height = 400, activeTabIndex = 0 } = props;
 		this.position = { x: 0, y: 0 };
 		this.element = null;
 		this.target = null;
+		const { activeTabIndex = 0 } = props;
 		this.state = {
 			activeTabIndex,
-			style: {
-				top,
-				left,
-				width,
-				height,
-			},
 		};
 		this.prepareBinds();
 	}
@@ -52,13 +46,11 @@ class EVEWindow extends Component {
 	}
 
 	componentDidUpdate () {
-		const { top = 0, left = 0, width = 400, height = 400 } = this.props;
-		this.nativeStyle({
-			top,
-			left,
-			width,
-			height,
-		}, false);
+		this.nativeStyle(this.getStyle(), false);
+	}
+
+	getStyle ({ top = 0, left = 0, width = 400, height = 400 } = this.props) {
+		return { top, left, width, height };
 	}
 
 	onMouseDown (e) {
@@ -83,7 +75,7 @@ class EVEWindow extends Component {
 		const list = this.target.classList;
 
 		const style = this.generateStyle(
-			this.state.style, 
+			this.getStyle(), 
 			position, 
 			list, 
 			this.element
@@ -189,7 +181,7 @@ class EVEWindow extends Component {
 	setElement (element) {
 		if (element === null || this.element) return;
 		this.element = element;
-		this.nativeStyle(this.state.style);
+		this.nativeStyle(this.getStyle());
 	}
 
 	tabChange (activeTabIndex) {
