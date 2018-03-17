@@ -7,8 +7,9 @@ import { Toolbar, ToolbarRow, ToolbarSection, ToolbarIcon } from 'rmwc/Toolbar';
 import { Tab, TabBar, TabBarScroller } from 'rmwc/Tabs';
 import { Icon } from 'rmwc/Icon';
 import { Ripple } from 'rmwc/Ripple';
-import { Grid, GridCell } from 'rmwc/Grid';
 import './EVEWindow.css';
+
+import EVETab from './EVETab';
 
 import EVEWindowScalers from './EVEWindowScalers';
 
@@ -183,8 +184,9 @@ class EVEWindow extends Component {
 		this.nativeStyle(this.state.style);
 	}
 
-	renderTab (tab, i) {
-
+	renderTab ({ title, type, props }, i) {
+		const CustomTab = EVETab.tabs[type];
+		return <CustomTab title={title} key={i} {...props} />;
 	}
 
 	render () {
@@ -230,10 +232,8 @@ class EVEWindow extends Component {
 							</ToolbarSection>
 						</ToolbarRow>
 					</Toolbar>
-					<div>
-						<Grid>
-							{this.props.tabs.map((tab, i) => <GridCell key={i} span={12}>tab</GridCell>)}
-						</Grid>
+					<div className={"window-content"}>
+						{this.props.tabs.map(this.renderTab)}
 					</div>
 				</Card>
 			</Elevation>
