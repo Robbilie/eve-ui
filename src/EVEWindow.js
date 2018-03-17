@@ -36,11 +36,12 @@ class EVEWindow extends Component {
 		this.onMouseMove = this.onMouseMove.bind(this);
 		this.removeListeners = this.removeListeners.bind(this);
 		this.renderTab = this.renderTab.bind(this);
-		this.handleChange = this.handleChange.bind(this);
+		this.tabChange = this.tabChange.bind(this);
 		this.focus = this.focus.bind(this);
 		this.minimize = this.minimize.bind(this);
 		this.toggleMax = this.toggleMax.bind(this);
 		this.close = this.close.bind(this);
+		this.closeTab = this.closeTab.bind(this);
 	}
 	
 	componentWillMount () {
@@ -167,6 +168,21 @@ class EVEWindow extends Component {
 		this.props.wm.close(this.props.id);
 	}
 
+	closeTab (index) {
+		const tabs = this.props.tabs.filter((tab, i) => i !== index);
+		if (!tabs.length) {
+			this.close();
+		} else {
+			this.props.wm.updateWindowState(
+				this.props.id,
+				{ 
+					activeTabIndex: 0,
+					tabs,
+				}
+			);
+		}
+	}
+
 	focus () {
 		this.props.wm.focus(this.props.id);
 	}
@@ -186,11 +202,11 @@ class EVEWindow extends Component {
 		this.nativeStyle(this.state.style);
 	}
 
-	handleChange (e) {
-		this.setState({ activeTabIndex: e.target.value });
+	tabChange (activeTabIndex) {
+		this.setState({ activeTabIndex });
 		this.props.wm.updateWindowState(
 			this.props.id, 
-			{ activeTabIndex: e.target.value }
+			{ activeTabIndex }
 		);
 	}
 
@@ -226,7 +242,12 @@ class EVEWindow extends Component {
 						onMouseDown={this.onMouseDown}
 					>
 						<ToolbarRow>
-							<EVEWindowTabs activeTabIndex={this.state.activeTabIndex} tabs={this.props.tabs} handleChange={this.handleChange} />
+							<EVEWindowTabs 
+								activeTabIndex={this.state.activeTabIndex} 
+								tabs={this.props.tabs} 
+								tabChange={this.tabChange}
+								close={this.closeTab}
+							/>
 							<EVEWindowButtons minimize={this.minimize} toggleMax={this.toggleMax} close={this.close} />
 						</ToolbarRow>
 					</Toolbar>
