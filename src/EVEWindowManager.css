@@ -9,12 +9,12 @@
 .taskbar {
 	position: relative;
 	height: 50px;
+    z-index: 10000000000;
 }
 
 .desktop {
 	position: relative;
 	flex-grow: 1;
-	overflow: hidden;
 }
 
 .none {
