@@ -48,6 +48,10 @@ class EVEWindow extends Component {
 		//this.wm = this.context.getWindowManager();
 	}
 
+	componentDidMount () {
+		//this.triggerResizeEvent();
+	}
+
 	componentDidUpdate () {
 		const { top = 0, left = 0, width = 400, height = 400 } = this.props;
 		this.nativeStyle({
@@ -59,6 +63,7 @@ class EVEWindow extends Component {
 	}
 
 	onMouseDown (e) {
+		if (!e.touches && e.button !== 0) return;
 		e.preventDefault();
 	  	const { clientX, clientY } = e.touches ? e.touches[0] : e;
 	  	this.updatePosition(clientX, clientY);
