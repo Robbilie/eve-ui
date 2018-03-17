@@ -9,6 +9,7 @@ class EVEWindowButtons extends Component {
 			<ToolbarSection alignEnd shrinkToFit>
 				<Ripple unbounded>
 					<ToolbarIcon 
+						className={"window-button"}
 						onClick={this.props.minimize} 
 						use="remove"
 					/>
@@ -17,6 +18,7 @@ class EVEWindowButtons extends Component {
 					null : 
 					<Ripple unbounded>
 						<ToolbarIcon 
+							className={"window-button"}
 							onClick={this.props.toggleFullscreen} 
 							use="fullscreen"
 						/>

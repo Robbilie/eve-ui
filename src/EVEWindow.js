@@ -206,11 +206,15 @@ class EVEWindow extends Component {
 		);
 	}
 
+	getClassName () {
+		return ["minimized", "maximized", "focused"].reduce((arr, k) => arr.concat(this.props[k] ? [k] : null), ["window"])
+	}
+
 	render () {
 		return (
 			<Elevation 
 				ref={(element) => this.setElement(ReactDOM.findDOMNode(element))}
-				className={"window" + (this.props.maximized ? " maximized" : "")}
+				className={this.getClassName()}
 				transition
 				z={this.props.focused ? 10 : 5}
 				style={{ 

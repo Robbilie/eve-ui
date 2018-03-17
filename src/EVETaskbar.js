@@ -38,8 +38,14 @@ class EVETaskbar extends Component {
 				key={id}
 				onClick={() => this.handleClick(id, minimized, focused)}
 				style={{ opacity: minimized ? 0.25 : 1 }}
+				className={"taskbar-tab"}
 			>
 				{tabs.map(({ title }) => title).join(" / ")}
+				<Icon 
+					onClick={(e) => e.stopPropagation() || this.props.wm.close(id)} 
+					className={"window-tab-close"}
+					use="close"
+				/>
 			</Tab>
 		);
 	}

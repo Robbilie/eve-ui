@@ -125,6 +125,27 @@ header {
   left: 0;
 }
 
+.window .window-button {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.window:hover .window-button,
+.window.focused .window-button {
+  opacity: 1;
+}
+
+.taskbar-tab .window-tab-close {
+  //display: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.taskbar-tab:hover .window-tab-close {
+  //display: inline-block;
+  opacity: 1;
+}
+
 .window-tab-close {
   vertical-align: bottom;
   margin-left: 6px;
