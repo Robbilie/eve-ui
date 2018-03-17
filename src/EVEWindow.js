@@ -8,9 +8,7 @@ import { Tab, TabBar, TabBarScroller } from 'rmwc/Tabs';
 import { Icon } from 'rmwc/Icon';
 import { Ripple } from 'rmwc/Ripple';
 import './EVEWindow.css';
-
-import EVETab from './EVETab';
-
+import EVETabManager from './EVETabManager';
 import EVEWindowScalers from './EVEWindowScalers';
 
 class EVEWindow extends Component {
@@ -185,7 +183,7 @@ class EVEWindow extends Component {
 	}
 
 	renderTab ({ title, type, props }, i) {
-		const CustomTab = EVETab.tabs[type];
+		const CustomTab = EVETabManager.get(type);
 		return <CustomTab title={title} key={i} {...props} />;
 	}
 

@@ -423,7 +423,7 @@ export default (function(ccpwgl_int)
             var constructor = null;
             if (h)
             {
-                if (h.buildClass == 2)
+                if (h.buildClass === 2)
                 {
                     constructor = 'loadObject';
                 }
@@ -658,7 +658,7 @@ export default (function(ccpwgl_int)
         var faction = null;
 
         var self = this;
-        if (typeof resPath == 'string')
+        if (typeof resPath === 'string')
         {
             resPath = [resPath];
         }
@@ -724,7 +724,7 @@ export default (function(ccpwgl_int)
 
         if (resPath.length > 1)
         {
-            if (resPath.length != 5)
+            if (resPath.length !== 5)
             {
                 throw new TypeError('Invalid number of parts passed to Tech3 ship constructor');
             }
@@ -810,7 +810,7 @@ export default (function(ccpwgl_int)
                     {
                         if (systems[j - 1])
                         {
-                            if (i == 4)
+                            if (i === 4)
                             {
                                 break;
                             }
@@ -1056,7 +1056,7 @@ export default (function(ccpwgl_int)
                     var ship = this.wrappedObjects[j];
                     for (var i = 0; i < ship.turretSets.length; ++i)
                     {
-                        if (ship.turretSets[i].locatorName == name)
+                        if (ship.turretSets[i].locatorName === name)
                         {
                             ship.turretSets.splice(i, 1);
                             break;
@@ -1080,7 +1080,7 @@ export default (function(ccpwgl_int)
             {
                 throw new ReferenceError('turret at index ' + index + ' is not defined');
             }
-            if (this.turrets[index].state != state || state == ccpwgl.TurretState.FIRING)
+            if (this.turrets[index].state !== state || state === ccpwgl.TurretState.FIRING)
             {
                 this.turrets[index].state = state;
                 var name = 'locator_turret_' + index;
@@ -1090,7 +1090,7 @@ export default (function(ccpwgl_int)
                     {
                         for (var i = 0; i < this.wrappedObjects[j].turretSets.length; ++i)
                         {
-                            if (this.wrappedObjects[j].turretSets[i].locatorName == name)
+                            if (this.wrappedObjects[j].turretSets[i].locatorName === name)
                             {
                                 switch (state)
                                 {
@@ -1164,11 +1164,6 @@ export default (function(ccpwgl_int)
 
         }
 
-        function fireMissile(missilePath, positions)
-        {
-            console.error(missilePath);
-        }
-
         /** Internal helper method that mount a turret on a loaded ship **/
         function doMountTurret(slot, resPath, state, targetPosition, objectIndex)
         {
@@ -1199,7 +1194,7 @@ export default (function(ccpwgl_int)
             var ship = self.wrappedObjects[objectIndex];
             for (i = 0; i < ship.turretSets.length; ++i)
             {
-                if (ship.turretSets[i].locatorName == name)
+                if (ship.turretSets[i].locatorName === name)
                 {
                     ship.turretSets.splice(i, 1);
                     break;
@@ -1269,14 +1264,14 @@ export default (function(ccpwgl_int)
                 };
 
             }
-            if (this.siegeState != state)
+            if (this.siegeState !== state)
             {
                 this.siegeState = state;
                 for (var j = 0; j < this.wrappedObjects.length; ++j)
                 {
                     if (this.wrappedObjects[j])
                     {
-                        if (state == ccpwgl.ShipSiegeState.SIEGE)
+                        if (state === ccpwgl.ShipSiegeState.SIEGE)
                         {
                             switch (this.internalSiegeState)
                             {
@@ -1389,7 +1384,7 @@ export default (function(ccpwgl_int)
         {
             if (resPath[i].match(/(\w|\d|[-_])+:(\w|\d|[-_])+:(\w|\d|[-_])+/))
             {
-                if (i == 0)
+                if (i === 0)
                 {
                     this.dna = resPath[0];
                     faction = this.dna.split(':')[1];
@@ -1399,7 +1394,7 @@ export default (function(ccpwgl_int)
             else
             {
                 ccpwgl_int.resMan.GetObject(resPath[i], OnShipPartLoaded(i));
-                if (i == 0)
+                if (i === 0)
                 {
                     var p = resPath[0].toLowerCase();
                     for (var f in factions)
@@ -1554,7 +1549,7 @@ export default (function(ccpwgl_int)
             {
                 obj.sunDiffuseColor.set(self.sunLightColor);
             }
-            obj.EnableLod(lodSetting == ccpwgl.LodSettings.LOD_ENABLED);
+            obj.EnableLod(lodSetting === ccpwgl.LodSettings.LOD_ENABLED);
             if (self.fog)
             {
                 obj.fogStart = self.fog[0];
@@ -1874,7 +1869,7 @@ export default (function(ccpwgl_int)
             lodSetting = setting;
             if (this.wrappedScene)
             {
-                this.wrappedScene.EnableLod(lodSetting == ccpwgl.LodSettings.LOD_ENABLED);
+                this.wrappedScene.EnableLod(lodSetting === ccpwgl.LodSettings.LOD_ENABLED);
             }
         };
     }
@@ -2070,7 +2065,7 @@ export default (function(ccpwgl_int)
         {
             var device = ccpwgl_int.device;
 
-            if (this.onShift && (event.touches && event.touches.length > 2 || !event.touches && event.button != 0))
+            if (this.onShift && ((event.touches && event.touches.length > 2) || (!event.touches && event.button !== 0)))
             {
                 this.shiftStage = 0;
                 event.preventDefault();
@@ -2297,12 +2292,12 @@ export default (function(ccpwgl_int)
      */
     ccpwgl.createScene = function(background)
     {
-        if (background && typeof background != 'string')
+        if (background && typeof background !== 'string')
         {
             clearColor = background;
         }
         scene = new Scene();
-        if (background && typeof background == 'string')
+        if (background && typeof background === 'string')
         {
             ccpwgl_int.resMan.GetObject('res:/dx9/scene/starfield/starfieldNebula.red', function(obj)
             {
@@ -2379,8 +2374,8 @@ export default (function(ccpwgl_int)
     ccpwgl.setResourceUnloadPolicy = function(policy, timeout)
     {
         resourceUnloadPolicy = policy;
-        ccpwgl_int.resMan.autoPurgeResources = policy == ccpwgl.ResourceUnloadPolicy.USAGE_BASED;
-        if (timeout != undefined)
+        ccpwgl_int.resMan.autoPurgeResources = policy === ccpwgl.ResourceUnloadPolicy.USAGE_BASED;
+        if (timeout !== undefined)
         {
             ccpwgl_int.resMan.purgeTime = timeout;
         }

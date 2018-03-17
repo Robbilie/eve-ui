@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import EVECCPWGLTab from './EVECCPWGLTab';
 
 class EVETab extends Component {
 	
@@ -12,10 +11,5 @@ class EVETab extends Component {
 	}
 
 }
-
-EVETab.tabs = {
-	EVETab,
-	EVECCPWGLTab,
-};
 
 export default EVETab;

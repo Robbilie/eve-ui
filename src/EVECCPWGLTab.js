@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import ccpwgl_int from 'ccpwgl/dist/ccpwgl_int';
 import ccpwgl from './ccpwgl';
 
 class EVECCPWGLTab extends Component {
@@ -8,7 +7,7 @@ class EVECCPWGLTab extends Component {
 	setCanvas (canvas) {
 		if (canvas === null || this.canvas) return;
 		this.canvas = canvas;
-		const wgl = ccpwgl(ccpwgl_int());
+		const wgl = ccpwgl(window.ccpwgl_int());
 		console.log(wgl);
 		wgl.initialize(canvas);
 		wgl.enablePostprocessing(true);
