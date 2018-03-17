@@ -9,7 +9,7 @@ class EVEWindowManager extends Component {
 	constructor (props) {
 		super(props);
 		this.state = this.loadState(
-			JSON.parse(localStorage.getItem("wm-state")) || { windows: [] },
+			JSON.parse(localStorage.getItem(`${this.props.id}-state`)) || { windows: [] },
 			true
 		);
 		this.prepareBinds();
@@ -18,10 +18,11 @@ class EVEWindowManager extends Component {
 	}
 
 	onBeforeUnload () {
-		localStorage.setItem("wm-state", JSON.stringify(this.state))
+		localStorage.setItem(`${this.props.id}-state`, JSON.stringify(this.state))
 	}
 
 	componentDidMount () {
+
 	}
 
 	prepareBinds () {
@@ -40,12 +41,13 @@ class EVEWindowManager extends Component {
 	}
 
 	minimize (id, minimized = true) {
-		const windows = this.state.windows.map(win => win.id === id ? { 
-			...win, 
-			minimized, 
-			zwindex: ++this.zwindex
-		} : win);
-		this.setState({ windows });
+		this.updateWindowState(
+			id,
+			{
+				minimized,
+				zwindex: ++this.zwindex,
+			}
+		);
 	}
 
 	close (id) {
@@ -62,7 +64,7 @@ class EVEWindowManager extends Component {
 		this.setState({ windows });
 	}
 
-	updateStyle (id, style) {
+	updateWindowState (id, style) {
 		const windows = this.state.windows.map(win => win.id === id ? { ...win, ...style } : win);
 		this.setState({ windows });
 	}
@@ -105,7 +107,12 @@ class EVEWindowManager extends Component {
 	}
 
 	activeTabIndex () {
-		return 1 + this.state.windows.findIndex(win => win.focused === true);
+		const index = this.state.windows.findIndex(win => win.focused === true);
+		if (index === -1) {
+			return this.state.windows.length - 1;
+		} else {
+			return index;
+		}
 	}
 
 	render () {

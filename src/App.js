@@ -8,6 +8,7 @@ class App extends Component {
     return (
       <div className="App">
         <EVEWindowManager
+        	id={"wm"}
             style={{ backgroundColor: '#283b4c' }}
         />
       </div>

@@ -15,11 +15,12 @@ class EVEWindow extends Component {
 
 	constructor (props) {
 		super(props);
-		const { top = 0, left = 0, width = 400, height = 400 } = props;
+		const { top = 0, left = 0, width = 400, height = 400, activeTabIndex = 0 } = props;
 		this.position = { x: 0, y: 0 };
 		this.element = null;
 		this.target = null;
 		this.state = {
+			activeTabIndex,
 			style: {
 				top,
 				left,
@@ -40,6 +41,7 @@ class EVEWindow extends Component {
 		this.close = this.close.bind(this);
 		this.focus = this.focus.bind(this);
 		this.renderTab = this.renderTab.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
 	
 	componentWillMount () {
@@ -173,7 +175,10 @@ class EVEWindow extends Component {
 	nativeStyle (style, update = true) {
 		Object.entries(style).forEach(([k, v]) => this.element.style[k] = `${v}px`);
 		if (update)
-			this.props.wm.updateStyle(this.props.id, style);
+			this.props.wm.updateWindowState(
+				this.props.id, 
+				style
+			);
 	}
 
 	setElement (element) {
@@ -182,9 +187,24 @@ class EVEWindow extends Component {
 		this.nativeStyle(this.state.style);
 	}
 
+	handleChange (e) {
+		this.setState({ activeTabIndex: e.target.value });
+		this.props.wm.updateWindowState(
+			this.props.id, 
+			{ activeTabIndex: e.target.value }
+		);
+	}
+
 	renderTab ({ title, type, props }, i) {
 		const CustomTab = EVETabManager.get(type);
-		return <CustomTab title={title} key={i} {...props} />;
+		return (
+			<CustomTab 
+				style={{ display: this.state.activeTabIndex === i ? "block" : "none" }}
+				title={title} 
+				key={i} 
+				{...props}
+			/>
+		);
 	}
 
 	render () {
@@ -212,7 +232,11 @@ class EVEWindow extends Component {
 									indicatorBack={<Icon use="chevron_left"/>} 
 									indicatorForward={<Icon use="chevron_right"/>}
 								>
-									<TabBar style={{ margin: 0 }}>
+									<TabBar
+										style={{ margin: 0 }}
+										activeTabIndex={this.state.activeTabIndex}
+										onChange={this.handleChange}
+									>
 										{this.props.tabs.map((tab, i) => <Tab key={i}>{tab.title}</Tab>)}
 									</TabBar>
 								</TabBarScroller>

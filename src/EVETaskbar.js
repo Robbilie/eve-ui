@@ -15,6 +15,7 @@ class EVETaskbar extends Component {
 	}
 
 	handleChange (e) {
+
 	}
 
 	handleClick (id, minimized, focused) {
@@ -36,16 +37,8 @@ class EVETaskbar extends Component {
 				onClick={() => this.handleClick(id, minimized, focused)}
 				style={{ backgroundColor: minimized ? "red" : "transparent" }}
 			>
-				{tabs[0].title}
+				{tabs.map(({ title }) => title).join(" / ")}
 			</Tab>
-		);
-	}
-
-	renderRestoreButton ({ id, tabs }, i) {
-		return (
-			<button key={i} onClick={() => this.minimize(id, false)}>
-				{tabs[0].title}
-			</button>
 		);
 	}
 	
@@ -59,7 +52,7 @@ class EVETaskbar extends Component {
 				<TabBar
 					style={{ margin: 0 }}
 					onChange={this.handleChange}
-					activeTabIndex={this.props.activeTabIndex}
+					activeTabIndex={this.props.activeTabIndex + 1}
 				>
 					<Tab onClick={() => this.props.wm.spawnWindow()}>
 						<TabIcon>home</TabIcon>

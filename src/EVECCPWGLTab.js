@@ -20,7 +20,7 @@ class EVECCPWGLTab extends Component {
 	
 	render () {
 		return (
-			<div className={"tab-eveccpwgl"}>
+			<div style={this.props.style} className={"tab-eveccpwgl"}>
 				<canvas ref={(element) => this.setCanvas(ReactDOM.findDOMNode(element))}></canvas>
 			</div>
 		);

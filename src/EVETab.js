@@ -4,7 +4,7 @@ class EVETab extends Component {
 	
 	render () {
 		return (
-			<div className={"window-content"}>
+			<div style={this.props.style} className={"window-content"}>
 				{this.props.title}
 			</div>
 		);

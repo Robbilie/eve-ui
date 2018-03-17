@@ -25,7 +25,11 @@ class EVEWindowScalers extends Component {
 
 	renderScaler (scaler, i) {
 		return (
-			<div key={i} onMouseDown={this.props.handleMouseDown} className={["resize", ...scaler].join(" ")}></div>
+			<div 
+				key={i} 
+				onMouseDown={this.props.handleMouseDown} 
+				className={["resize", ...scaler].join(" ")}
+			></div>
 		);
 	}
 	
