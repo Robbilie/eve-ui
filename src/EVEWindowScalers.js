@@ -28,6 +28,7 @@ class EVEWindowScalers extends Component {
 			<div 
 				key={i} 
 				onMouseDown={this.props.handleMouseDown} 
+				onTouchStart={this.props.handleMouseDown} 
 				className={["resize", ...scaler].join(" ")}
 			></div>
 		);

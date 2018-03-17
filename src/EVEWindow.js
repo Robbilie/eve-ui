@@ -223,6 +223,7 @@ class EVEWindow extends Component {
 					overflow: this.props.maximized ? "hidden" : "initial",
 				}}
 				onMouseDown={this.focus}
+				onTouchStart={this.focus}
 			>
 				<EVEWindowScalers handleMouseDown={this.onMouseDown}/>
 				<Card style={{ borderRadius: 0 }}>
