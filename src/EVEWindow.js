@@ -54,7 +54,7 @@ class EVEWindow extends Component {
 	}
 
 	onMouseDown (e) {
-		if (this.props.mobile || (!e.touches && e.button !== 0)) return;
+		if (this.props.maximized || this.props.mobile || (!e.touches && e.button !== 0)) return;
 		e.preventDefault();
 	  	this.updatePosition(e.touches ? e.touches[0] : e);
 	  	this.target = e.currentTarget;
@@ -216,6 +216,7 @@ class EVEWindow extends Component {
 				style={{ 
 					display: this.props.minimized === true ? "none" : "block",
 					zIndex: this.props.zwindex,
+					overflow: this.props.maximized ? "hidden" : "initial",
 				}}
 				onMouseDown={this.focus}
 			>
