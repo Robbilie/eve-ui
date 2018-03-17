@@ -147,4 +147,8 @@ header {
     height: 100% !important;
   }
 
+  .taskbar {
+    background-color: var(--mdc-theme-primary) !important;
+  }
+
 }
