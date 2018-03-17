@@ -87,7 +87,7 @@ class EVEWindow extends Component {
 			this.triggerResizeEvent();
 	}
 
-	generateStyle (initial, { x, y }, list, { offsetLeft, offsetTop, clientWidth, clientHeight }) {
+	generateStyle (initial, { x, y }, list, { offsetLeft, offsetTop, clientWidth, clientHeight, parentNode }) {
 		const style = { ...initial };
 
 		const invert = list.contains("invert");
@@ -95,10 +95,10 @@ class EVEWindow extends Component {
 		const bottomLeft = list.contains("bottom-left");
 
 		if (list.contains("move-x"))
-			style.left = offsetLeft - x;
+			style.left = Math.max(0, Math.min(parentNode.clientWidth - clientWidth, offsetLeft - x));
 
 		if (list.contains("move-y"))
-			style.top = offsetTop - y;
+			style.top = Math.max(0, Math.min(parentNode.clientHeight - clientHeight, offsetTop - y));
 		  
 		if (list.contains("scale-x"))
 			style.width = clientWidth - (invert && !topRight ? -x : x);

@@ -124,6 +124,9 @@ class EVEWindowManager extends Component {
 		return (
 			<div className={"window-manager"} style={this.props.style}>
 				<EVETaskbar 
+					style={{
+						backgroundColor: this.state.windows.some(({ maximized }) => maximized) ? "var(--mdc-theme-primary)" : "transparent"
+					}}
 					wm={this} 
 					windows={this.state.windows} 
 					activeTabIndex={this.activeTabIndex()}

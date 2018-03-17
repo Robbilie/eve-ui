@@ -47,6 +47,7 @@ class EVETaskbar extends Component {
 	render () {
 		return (
 			<TabBarScroller 
+				style={this.props.style}
 				className={"taskbar"}
 				indicatorBack={<Icon use="chevron_left"/>} 
 				indicatorForward={<Icon use="chevron_right"/>}
