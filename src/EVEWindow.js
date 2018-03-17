@@ -95,10 +95,12 @@ class EVEWindow extends Component {
 		const bottomLeft = list.contains("bottom-left");
 
 		if (list.contains("move-x"))
-			style.left = Math.max(0, Math.min(parentNode.clientWidth - clientWidth, offsetLeft - x));
+			//style.left = Math.max(0, Math.min(parentNode.clientWidth - clientWidth, offsetLeft - x));
+			style.left = offsetLeft - x;
 
 		if (list.contains("move-y"))
-			style.top = Math.max(0, Math.min(parentNode.clientHeight - clientHeight, offsetTop - y));
+			//style.top = Math.max(0, Math.min(parentNode.clientHeight - clientHeight, offsetTop - y));
+			style.top = offsetTop - y;
 		  
 		if (list.contains("scale-x"))
 			style.width = clientWidth - (invert && !topRight ? -x : x);

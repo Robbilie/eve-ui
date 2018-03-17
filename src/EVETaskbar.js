@@ -61,7 +61,7 @@ class EVETaskbar extends Component {
 						<TabIcon>home</TabIcon>
 					</Tab>
 					{this.props.windows.map(this.renderTab)}
-					<Tab style={{ display: "none" }}></Tab>
+					<Tab className={"none"}></Tab>
 				</TabBar>
 			</TabBarScroller>
 		);

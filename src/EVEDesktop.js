@@ -19,7 +19,8 @@ class EVEDesktop extends Component {
 				key={id} 
 				id={id} 
 				mobile={this.props.mobile}
-				{...rest} />
+				{...rest}
+			/>
 		);
 	}
 	

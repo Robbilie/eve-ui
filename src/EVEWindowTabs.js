@@ -23,7 +23,14 @@ class EVEWindowTabs extends Component {
 		return (
 			<Tab key={i}>
 				{tab.title}
-				{this.props.tabs.length === 1 ? null : <Icon onClick={() => this.props.close(i)} className={"window-tab-close"}>close</Icon>}
+				{this.props.tabs.length === 1 ? 
+					null : 
+					<Icon 
+						onClick={() => this.props.close(i)} 
+						className={"window-tab-close"}
+						use="close"
+					/>
+				}
 			</Tab>
 		);
 	}
@@ -40,9 +47,9 @@ class EVEWindowTabs extends Component {
 						activeTabIndex={this.props.activeTabIndex + 1}
 						onChange={this.handleChange}
 					>
-						<Tab style={{ display: "none" }}></Tab>
+						<Tab className={"none"}></Tab>
 						{this.props.tabs.map(this.renderTab)}
-						<Tab style={{ display: "none" }}></Tab>
+						<Tab className={"none"}></Tab>
 					</TabBar>
 				</TabBarScroller>
 			</ToolbarSection>

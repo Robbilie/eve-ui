@@ -120,12 +120,16 @@ class EVEWindowManager extends Component {
 		return this.state.windows.findIndex(win => win.focused === true);
 	}
 
+	isAnyMaximized () {
+		return this.state.windows.some(({ maximized, minimized }) => maximized && !minimized);
+	}
+
 	render () {
 		return (
 			<div className={"window-manager"} style={this.props.style}>
 				<EVETaskbar 
 					style={{
-						backgroundColor: this.state.windows.some(({ maximized, minimized }) => maximized && !minimized) ? "var(--mdc-theme-primary)" : "transparent"
+						backgroundColor: this.isAnyMaximized() ? "var(--mdc-theme-primary)" : "transparent"
 					}}
 					wm={this} 
 					windows={this.state.windows} 

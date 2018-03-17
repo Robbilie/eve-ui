@@ -8,13 +8,26 @@ class EVEWindowButtons extends Component {
 		return (
 			<ToolbarSection alignEnd shrinkToFit>
 				<Ripple unbounded>
-					<ToolbarIcon onClick={this.props.minimize} use="remove"/>
+					<ToolbarIcon 
+						onClick={this.props.minimize} 
+						use="remove"
+					/>
 				</Ripple>
-				{this.props.mobile ? null : <Ripple unbounded>
-					<ToolbarIcon onClick={this.props.toggleFullscreen} use="fullscreen"/>
-				</Ripple>}
+				{this.props.mobile ? 
+					null : 
+					<Ripple unbounded>
+						<ToolbarIcon 
+							onClick={this.props.toggleFullscreen} 
+							use="fullscreen"
+						/>
+					</Ripple>
+				}
 				<Ripple unbounded>
-					<ToolbarIcon onClick={this.props.close} use="close" className={"close"}/>
+					<ToolbarIcon 
+						onClick={this.props.close} 
+						use="close" 
+						className={"close"}
+					/>
 				</Ripple>
 			</ToolbarSection>
 		);
