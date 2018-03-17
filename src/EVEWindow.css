@@ -148,8 +148,10 @@ header {
 
 .window-tab-close {
   vertical-align: bottom;
-  margin-left: 6px;
-  margin-right: -20px;
+  //margin-left: 6px;
+  //margin-right: -20px;
+  position: absolute;
+  right: 0;
 }
 
 .maximized {
