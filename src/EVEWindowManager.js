@@ -121,7 +121,7 @@ class EVEWindowManager extends Component {
 	}
 
 	isAnyMaximized () {
-		return this.state.windows.some(({ maximized, minimized }) => maximized && !minimized);
+		return this.state.windows.some(({ maximized, minimized }) => (maximized || this.props.mobile) && !minimized);
 	}
 
 	render () {
