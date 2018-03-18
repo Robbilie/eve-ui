@@ -60,22 +60,28 @@ class EVEWindowManager extends Component {
 		);
 	}
 
+	focus (id) {
+		this.updateWindowState(
+			id,
+			{
+				focused: true,
+				zwindex: ++this.zwindex,
+			}
+		);
+	}
+
 	close (id) {
 		const windows = this.state.windows.filter(win => win.id !== id);
 		this.setState({ windows });
 	}
 
-	focus (id) {
-		const windows = this.state.windows.map(win => ({ 
-			...win, 
-			focused: win.id === id, 
-			zwindex: win.id === id ? ++this.zwindex : win.zwindex
-		}));
-		this.setState({ windows });
-	}
-
 	updateWindowState (id, state) {
-		const windows = this.state.windows.map(win => win.id === id ? { ...win, ...state } : win);
+		const windows = this.state.windows.map(win => Object.assign(
+			{}, 
+			win,
+			win.id === id ? state : {},
+			{ focused: state.focused !== undefined ? win.id === id : win.focused },
+		));
 		this.setState({ windows });
 	}
 

@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
-import { Elevation } from 'rmwc/Elevation';
-import { Card } from 'rmwc/Card';
-import { Toolbar, ToolbarRow } from 'rmwc/Toolbar';
 import './EVEWindow.css';
+import EVEWindowWrapper from './EVEWindowWrapper';
 import EVETabManager from './EVETabManager';
-import EVEWindowScalers from './EVEWindowScalers';
-import EVEWindowTabs from './EVEWindowTabs';
-import EVEWindowButtons from './EVEWindowButtons';
 
 class EVEWindow extends Component {
 
@@ -35,6 +29,7 @@ class EVEWindow extends Component {
 		this.toggleFullscreen = this.toggleFullscreen.bind(this);
 		this.close = this.close.bind(this);
 		this.closeTab = this.closeTab.bind(this);
+		this.setElement = this.setElement.bind(this);
 	}
 	
 	componentWillMount () {
@@ -206,52 +201,26 @@ class EVEWindow extends Component {
 		);
 	}
 
-	getClassName () {
-		return ["minimized", "maximized", "focused"].reduce((arr, k) => arr.concat(this.props[k] ? [k] : null), ["window"])
-	}
-
 	render () {
 		return (
-			<Elevation 
-				ref={(element) => this.setElement(ReactDOM.findDOMNode(element))}
-				className={this.getClassName()}
-				transition
-				z={this.props.focused ? 10 : 5}
-				style={{ 
-					display: this.props.minimized === true ? "none" : "block",
-					zIndex: this.props.zwindex,
-					overflow: this.props.maximized ? "hidden" : "initial",
-				}}
-				onMouseDown={this.focus}
-				onTouchStart={this.focus}
+			<EVEWindowWrapper
+				minimized={this.props.minimized}
+				maximized={this.props.maximized}
+				focused={this.props.focused}
+				zwindex={this.props.zwindex}
+				setElement={this.setElement}
+				focus={this.focus}
+				minimize={this.minimize}
+				toggleFullscreen={this.toggleFullscreen}
+				close={this.close}
+				handleMouseDown={this.onMouseDown}
+				tabs={this.props.tabs}
+				tabChange={this.tabChange}
+				closeTab={this.closeTab}
+				activeTabIndex={this.state.activeTabIndex}
 			>
-				<EVEWindowScalers handleMouseDown={this.onMouseDown}/>
-				<Card style={{ borderRadius: 0 }}>
-					<Toolbar
-						className={"move-x move-y"}
-						onMouseDown={this.onMouseDown}
-						onTouchStart={this.onMouseDown}
-					>
-						<ToolbarRow>
-							<EVEWindowTabs 
-								activeTabIndex={this.state.activeTabIndex} 
-								tabs={this.props.tabs} 
-								tabChange={this.tabChange}
-								close={this.closeTab}
-							/>
-							<EVEWindowButtons 
-								mobile={this.props.mobile}
-								minimize={this.minimize} 
-								toggleFullscreen={this.toggleFullscreen} 
-								close={this.close}
-							 />
-						</ToolbarRow>
-					</Toolbar>
-					<div className={"window-content"}>
-						{this.props.tabs.map(this.renderTab)}
-					</div>
-				</Card>
-			</Elevation>
+				{this.props.tabs.map(this.renderTab)}
+			</EVEWindowWrapper>
 		);
 	}
 }

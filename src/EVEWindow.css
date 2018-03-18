@@ -13,65 +13,65 @@
 }
 
 .vertical {
-  height: 4px;
+  height: 6px;
   cursor: row-resize;
 }
 
 .horizontal {
-  width: 4px;
+  width: 6px;
   cursor: col-resize;
 }
 
 .bidirectional {
-  width: 4px;
-  height: 4px;
+  width: 6px;
+  height: 6px;
 }
 
 .top {
   left: 0;
-  top: -2px;
+  top: -3px;
   right: 0;
 }
 
 .right {
   top: 0;
-  right: -2px;
+  right: -3px;
   bottom: 0;
 }
 
 .bottom {
   left: 0;
-  bottom: -2px;
+  bottom: -3px;
   right: 0;
 }
 
 .left {
   top: 0;
-  left: -2px;
+  left: -3px;
   bottom: 0;
 }
 
 .top-left {
-  top: -2px;
-  left: -2px;
+  top: -3px;
+  left: -3px;
   cursor: nwse-resize;
 }
 
 .top-right {
-  top: -2px;
-  right: -2px;
+  top: -3px;
+  right: -3px;
   cursor: nesw-resize;
 }
 
 .bottom-left {
-  bottom: -2px;
-  left: -2px;
+  bottom: -3px;
+  left: -3px;
   cursor: nesw-resize;
 }
 
 .bottom-right {
-  bottom: -2px;
-  right: -2px;
+  bottom: -3px;
+  right: -3px;
   cursor: nwse-resize;
 }
 
