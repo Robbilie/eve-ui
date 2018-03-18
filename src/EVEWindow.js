@@ -192,12 +192,15 @@ class EVEWindow extends Component {
 	renderTab ({ title, type, props }, i) {
 		const CustomTab = EVETabManager.get(type);
 		return (
-			<CustomTab 
-				style={{ display: this.state.activeTabIndex === i ? "block" : "none" }}
-				title={title} 
+			<div 
 				key={i} 
-				{...props}
-			/>
+				className={"window-tab" + (this.state.activeTabIndex === i ? " visible" : "")}
+			>
+				<CustomTab 
+					title={title} 
+					{...props}
+				/>
+			</div>
 		);
 	}
 

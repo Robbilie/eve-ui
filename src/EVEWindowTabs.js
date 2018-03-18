@@ -43,7 +43,6 @@ class EVEWindowTabs extends Component {
 					indicatorForward={<Icon use="chevron_right"/>}
 				>
 					<TabBar
-						style={{ margin: 0 }}
 						activeTabIndex={this.props.activeTabIndex + 1}
 						onChange={this.handleChange}
 					>

@@ -4,6 +4,7 @@
 
 .window .mdc-card {
   height: 100%;
+  border-radius: 0;
 }
 
 .resize {
@@ -106,11 +107,6 @@ header {
   height: 3px;
 }
 
-.window-content {
-  flex-grow: 1;
-  position: relative;
-}
-
 .tab-eveccpwgl canvas {
   height: 100%;
   position: relative;
@@ -154,7 +150,7 @@ header {
   right: 0;
 }
 
-.maximized {
+.window.maximized {
   left: 0 !important;
   top: 0 !important;
   width: 100% !important;
@@ -175,4 +171,40 @@ header {
 .taskbar,
 .window header {
   user-select: none;
+}
+
+.window.minimized {
+  display: none;
+}
+
+.window.maximized {
+  overflow: hidden;
+}
+
+.taskbar nav.mdc-tab-bar,
+.window .mdc-card header nav.mdc-tab-bar {
+  margin: 0;
+}
+
+.taskbar-tab.minimized {
+  opacity: 0.25;
+}
+
+.taskbar.maximized {
+  background-color: var(--mdc-theme-primary);
+}
+
+.window-content {
+  flex-grow: 1;
+  display: flex;
+}
+
+.window .window-tab {
+  flex-grow: 1;
+  position: relative;
+  display: none;
+}
+
+.window .window-tab.visible {
+  display: block;
 }

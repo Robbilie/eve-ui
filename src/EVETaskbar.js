@@ -37,8 +37,7 @@ class EVETaskbar extends Component {
 			<Tab
 				key={id}
 				onClick={() => this.handleClick(id, minimized, focused)}
-				style={{ opacity: minimized ? 0.25 : 1 }}
-				className={"taskbar-tab"}
+				className={"taskbar-tab" + (minimized ? " minimized" : "")}
 			>
 				{tabs.map(({ title }) => title).join(" / ")}
 				{this.props.mobile ? null :
@@ -56,12 +55,11 @@ class EVETaskbar extends Component {
 		return (
 			<TabBarScroller 
 				style={this.props.style}
-				className={"taskbar"}
+				className={"taskbar" + (this.props.className ? " " + this.props.className : "")}
 				indicatorBack={<Icon use="chevron_left"/>} 
 				indicatorForward={<Icon use="chevron_right"/>}
 			>
 				<TabBar
-					style={{ margin: 0 }}
 					onChange={this.handleChange}
 					activeTabIndex={this.props.activeTabIndex + 1}
 				>

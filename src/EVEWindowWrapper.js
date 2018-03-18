@@ -20,16 +20,12 @@ class EVEWindowWrapper extends Component {
 				className={this.getClassName()}
 				transition
 				z={this.props.focused ? 10 : 5}
-				style={{ 
-					display: this.props.minimized === true ? "none" : "block",
-					zIndex: this.props.zwindex,
-					overflow: this.props.maximized ? "hidden" : "initial",
-				}}
+				style={{ zIndex: this.props.zwindex }}
 				onMouseDown={this.props.focus}
 				onTouchStart={this.props.focus}
 			>
 				<EVEWindowScalers handleMouseDown={this.props.handleMouseDown}/>
-				<Card style={{ borderRadius: 0 }}>
+				<Card>
 					<Toolbar
 						className={"move-x move-y"}
 						onMouseDown={this.props.handleMouseDown}
