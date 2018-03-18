@@ -212,3 +212,28 @@ header {
 .window .window-tab.visible {
   display: block;
 }
+
+.window-manager {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.taskbar {
+  position: relative;
+  height: 50px;
+  z-index: 10000000000;
+  transition: background-color 0.3s;
+}
+
+.desktop {
+  position: relative;
+  flex-grow: 1;
+}
+
+.none {
+  display: none;
+}
