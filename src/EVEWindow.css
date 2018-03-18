@@ -171,3 +171,8 @@ header {
   }
 
 }
+
+.taskbar,
+.window header {
+  user-select: none;
+}
