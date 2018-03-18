@@ -80,7 +80,7 @@ class EVEWindowManager extends Component {
 			{}, 
 			win,
 			win.id === id ? state : {},
-			{ focused: state.focused !== undefined ? win.id === id : win.focused },
+			{ focused: state.focused !== undefined ? (win.id === id ? state.focused : false) : win.focused },
 		));
 		this.setState({ windows });
 	}

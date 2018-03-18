@@ -166,6 +166,10 @@ header {
     height: 100% !important;
   }
 
+  .window .window-button {
+    opacity: 1;
+  }
+
 }
 
 .taskbar,
