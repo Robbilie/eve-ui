@@ -207,6 +207,7 @@ class EVEWindow extends Component {
 	render () {
 		return (
 			<EVEWindowWrapper
+				mobile={this.props.mobile}
 				minimized={this.props.minimized}
 				maximized={this.props.maximized}
 				focused={this.props.focused}
