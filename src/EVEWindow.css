@@ -1,5 +1,6 @@
 .window {
   position: absolute;
+  will-change: top, left, width, height, z-index;
 }
 
 .window .mdc-card {
